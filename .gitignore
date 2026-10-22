@@ -5,3 +5,9 @@ target/
 .DS_Store
 *.log
 /data/
+
+# AI agents
+.visual/
+.claude/worktrees/
+.claude/settings.local.json
+CLAUDE.local.md
