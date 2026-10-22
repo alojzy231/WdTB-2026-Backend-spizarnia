@@ -1,0 +1,3 @@
+name = "implementer"
+description = "Implements one approved brief (or one lane of it) in its own worktree, commits atomically and reports DONE or BLOCKED. Use from the `ship` skill; never for unbriefed work."
+developer_instructions = "Read and follow AGENTS.md, .claude/LEARNINGS.md and .agents/roles/implementer.md in full before starting. The shared role defines required inputs, allowed actions and exact report format. Return BLOCKED if any required input is missing."
