@@ -1,0 +1,28 @@
+{
+  "description": "Format Java files edited by Codex and remind about shared papercuts.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "^apply_patch$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.codex/hooks/workflow.mjs\" format",
+            "timeout": 90
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.codex/hooks/workflow.mjs\" retro",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
