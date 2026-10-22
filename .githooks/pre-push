@@ -1,0 +1,10 @@
+#!/bin/sh
+# Blocks pushes to main: changes reach main only by merging a PR on GitHub.
+# Git passes "<local ref> <local sha> <remote ref> <remote sha>" lines on stdin.
+while read -r local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_ref" = "refs/heads/main" ]; then
+    echo "Pushing to main is blocked. Push your branch and open a PR: git push -u origin <branch>" >&2
+    exit 1
+  fi
+done
+exit 0
