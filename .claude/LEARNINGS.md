@@ -15,6 +15,7 @@ Rules learned from real mistakes. Every agent reads this before working.
 - zsh expands a leading `=` (`echo =====` → "==== not found") and ties `path` to `PATH` → quote separators (`echo "---"`) and never name a shell variable `path`.
 - `pkill -f spring-boot` also kills other worktrees' apps → stop an app by its port: `/usr/sbin/lsof -ti tcp:<port> | xargs kill`.
 - `spotless:apply` failed with `NoSuchFieldError ... JCCompilationUnit` on JDK 27 → run Maven with `JAVA_HOME=$(/usr/libexec/java_home -v 21)`.
+- The git guard hook blocked a Bash heredoc whose line read `... && gh pr merge` → write docs mentioning blocked commands with the Write/Edit tool.
 - There is no global `mvn` → always `./mvnw` from the worktree root.
 
 ## Project
