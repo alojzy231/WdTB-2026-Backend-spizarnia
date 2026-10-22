@@ -103,6 +103,24 @@
                     </statelessTestsetReporter>
                 </configuration>
             </plugin>
+            <!--
+                Formatowanie: ./mvnw spotless:apply. Nie jest podpięte pod build, więc CI go nie sprawdza.
+                ratchetFrom: formatuje tylko pliki zmienione względem origin/main, bez masowego przeformatowania.
+            -->
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>3.10.4</version>
+                <configuration>
+                    <ratchetFrom>origin/main</ratchetFrom>
+                    <java>
+                        <palantirJavaFormat>
+                            <version>2.102.0</version>
+                        </palantirJavaFormat>
+                        <removeUnusedImports/>
+                    </java>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
