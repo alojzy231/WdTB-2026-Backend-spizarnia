@@ -31,7 +31,7 @@ Title: conventional commit, no scope, e.g. `feat: encja produktu i dane startowe
 
 ## Evidence
 
-<!-- api-verifier table, screenshots uploaded with `gh pr edit --attach`, or "n/a". Never commit media files. -->
+<!-- api-verifier table, screenshots uploaded with `gh pr create/edit --attach`, or "n/a". Never commit media files. -->
 
 ## Risks and follow-ups
 

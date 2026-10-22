@@ -29,4 +29,4 @@ FINDINGS:
 PAPERCUTS: <friction worth logging, or "none">
 ```
 
-Screenshots stay in `.visual/` and are never committed. `gh` cannot upload attachments, so the orchestrator lists the files in the PR's "Evidence" section and asks the user to drag them into the PR description.
+Screenshots stay in `.visual/` and are never committed. The orchestrator uploads them to the PR description with `gh pr create --attach '<file>#<alt>'` or `gh pr edit <number> --attach '<file>#<alt>'`; a body reference like `![alt](./.visual/home.png)` is replaced with the uploaded file.

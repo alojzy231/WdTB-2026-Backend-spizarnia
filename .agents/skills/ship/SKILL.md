@@ -29,7 +29,7 @@ You are the orchestrator. You plan, delegate, judge reports and talk to the user
 8. **Integrate.** Several lanes for one PR? Merge them into one branch, re-run the gate there, and check `git merge-tree --write-tree origin/main HEAD`. Merge `origin/main` again right before the PR.
 9. **PR.** Delete `.agents/briefs/<slug>.md` in a final `chore:` commit. `git push -u origin <branch>`, then `gh pr create --body-file <file>` with:
    - Title: conventional commit, no scope, brief, Polish subject.
-   - Body from `.github/pull_request_template.md`, including "How it works (for the defence)" from the implementers' EXPLAIN output and the verifier tables under "Evidence". Screenshots: list the `.visual/` files and ask the user to drag them into the PR.
+   - Body from `.github/pull_request_template.md`, including "How it works (for the defence)" from the implementers' EXPLAIN output and the verifier tables under "Evidence". Screenshots: reference them in the body (`![Strona główna](./.visual/home.png)`) and upload with `gh pr create --attach '<file>#<alt>'` (or later `gh pr edit <number> --attach …`, up to 50 files). Open the PR and check the media renders.
    - Grep the body for `#[0-9]+` before sending: only real PR or issue references may use `#N`.
 10. **Watch, don't merge.** Run `gh pr checks <number> --watch`. Red "Testy i reguły" → send the failure to the implementer (max 2 rounds). Green → stop. **Never run `gh pr merge`.** The user reviews and merges.
 11. **Report.** Tell the user in a few lines: PR link, check status, what to look at in review, verifier tables if any. After they merge, clean up with `scripts/worktree-remove.sh <slug>`.
