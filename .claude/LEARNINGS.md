@@ -14,6 +14,7 @@ Rules learned from real mistakes. Every agent reads this before working.
 - `cmd | tail && git commit` committed a failure, because the pipe hid the exit code → never pipe a gate command before `&&`; use `set -o pipefail` or check `$?` separately.
 - zsh expands a leading `=` (`echo =====` → "==== not found") and ties `path` to `PATH` → quote separators (`echo "---"`) and never name a shell variable `path`.
 - `pkill -f spring-boot` also kills other worktrees' apps → stop an app by its port: `/usr/sbin/lsof -ti tcp:<port> | xargs kill`.
+- `spotless:apply` failed with `NoSuchFieldError ... JCCompilationUnit` on JDK 27 → run Maven with `JAVA_HOME=$(/usr/libexec/java_home -v 21)`.
 - There is no global `mvn` → always `./mvnw` from the worktree root.
 
 ## Project

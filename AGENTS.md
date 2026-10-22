@@ -31,6 +31,8 @@ Code identifiers in English. Comments, Javadoc, commit subjects and user-facing 
 
 ## Quality gate
 
+Run Maven on JDK 21, like CI: `export JAVA_HOME=$(/usr/libexec/java_home -v 21)` on macOS (Claude gets it from `.claude/settings.local.json`). Spotless fails on JDK 27.
+
 Before calling anything done, in the worktree:
 
 1. `./mvnw -B -ntp spotless:apply` (formats only files changed against `origin/main`).
