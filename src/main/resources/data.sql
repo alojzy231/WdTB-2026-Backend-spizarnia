@@ -30,7 +30,7 @@ insert into shopping_list_item (product_name, quantity, unit, estimated_price, p
     ('Ser żółty',         300.00, 'G',     null,  false, current_timestamp);
 
 -- ===== LAB 02 · household =====
-insert into household (name, street, city, postal_code, members_count, created_at) values
-    ('Mieszkanie Kasi',     'ul. Ruska 12/4',     'Wrocław', '50-079', 3, '2026-10-01'),
-    ('Dom Nowaków',         'ul. Kwiatowa 7',     'Oława',   '55-200', 4, '2026-09-15'),
-    ('Pokój w akademiku',   'ul. Wittiga 4',      'Wrocław', '51-628', 2, '2026-10-10');
+insert into household (name, street, building_number, apartment_number, city, postal_code, members_count, created_at) values
+    ('Mieszkanie Kasi',     'ul. Ruska',    '12', '4',   'Wrocław', '50-079', 3, '2026-10-01'),
+    ('Dom Nowaków',         'ul. Kwiatowa', '7',  null,  'Oława',   '55-200', 4, '2026-09-15'),
+    ('Pokój w akademiku',   'ul. Wittiga',  '4',  '204', 'Wrocław', '51-628', 2, '2026-10-10');
