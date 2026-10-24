@@ -1,0 +1,5 @@
+# MCP servers mirror .mcp.json (Claude). Keep both in sync when adding a server.
+
+[mcp_servers."playwright"]
+command = "npx"
+args = ["-y", "@playwright/mcp@0.0.83", "--isolated", "--output-dir", ".visual"]
