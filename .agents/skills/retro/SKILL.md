@@ -11,7 +11,7 @@ The goal: a mistake made twice becomes a rule, so it isn't made a third time. A 
 
 - Every file in `.claude/papercuts/` except `README.md`.
 - Every file in `.claude/visual/caveats/` except `README.md`. Fold the useful ones into `.claude/visual/CAVEATS.md` and delete them in the retro commit.
-- Review comments on recent PRs (`gh pr list --state merged --limit 10`, then `gh pr view <n> --comments`): what the user had to correct is the best signal.
+- Recent history on `main` (`git log --oneline -30`): follow-up `fix:` commits after agent work and failed CI runs (`gh run list --branch main --status failure`) show what the user had to correct.
 - The last retro date: `git log -1 --format=%cs --grep "^fix: apply retro"`.
 
 ## 2. Group
@@ -44,4 +44,4 @@ Show each proposal as a diff with its evidence. Let the user approve, edit or re
 - Apply only the approved diffs. The user is the single writer of rules.
 - Keep `.claude/LEARNINGS.md` under its ~60-line cap: to add a rule when it's full, merge or remove another.
 - Delete the folded papercut files in the same commit.
-- Commit on a branch: `fix: apply retro learnings`, open a PR for the user to merge.
+- Commit on `main`: `fix: apply retro learnings`, then push.

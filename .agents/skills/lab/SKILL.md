@@ -21,4 +21,4 @@ Turns a lab's instructions and rules into briefs. The lab page tells what to bui
 
 - Never create or push `lab-N` tags; the team makes them in class.
 - Never edit `src/test/java/pl/wsb/rules/`. A rule that looks wrong goes to the user as a question for the instructor.
-- Every team member must be able to explain the result: after the PRs, suggest running `explain` on each module.
+- Every team member must be able to explain the result: after the push, suggest running `explain` on each module.

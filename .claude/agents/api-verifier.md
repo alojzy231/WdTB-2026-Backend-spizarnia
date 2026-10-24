@@ -1,6 +1,6 @@
 ---
 name: api-verifier
-description: Optional check of the running app's REST API and data with curl against a lane's port. Returns a checks table for the PR. Spawn only after the user agreed.
+description: Optional check of the running app's REST API and data with curl on port 8090. Returns a checks table for the report. Spawn only after the user agreed.
 tools: Read, Grep, Glob, Bash, Write
 ---
 

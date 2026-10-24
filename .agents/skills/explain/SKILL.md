@@ -1,6 +1,6 @@
 ---
 name: explain
-description: Explain a piece of the project (a file, a module, a PR, an endpoint flow) in Polish so any team member can defend it in front of the instructor; can quiz the user. Use when the user says "wytłumacz", "explain", "jak to działa", "przygotuj do obrony" or after a lab's PRs.
+description: Explain a piece of the project (a file, a module, a commit range, an endpoint flow) in Polish so any team member can defend it in front of the instructor; can quiz the user. Use when the user says "wytłumacz", "explain", "jak to działa", "przygotuj do obrony" or after a lab's work is pushed.
 ---
 
 # Explain
@@ -9,7 +9,7 @@ At grading the instructor may ask any team member to explain any part of the cod
 
 ## Inputs
 
-- What to explain: a path, a module (`pl.wsb.spizarnia.<module>`), a PR number or an endpoint. Default: the diff of the current branch against `origin/main`.
+- What to explain: a path, a module (`pl.wsb.spizarnia.<module>`), a commit range or an endpoint. Default: the commits not yet pushed (`origin/main..HEAD`), or the last `ship` run's commits.
 - Mode: `explain` (default) or `quiz`.
 
 ## Explain mode

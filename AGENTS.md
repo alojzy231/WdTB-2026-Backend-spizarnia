@@ -22,18 +22,18 @@ Code identifiers in English. Comments, Javadoc, commit subjects and user-facing 
 
 ## Git flow
 
-- **Never work on `main`.** One change = one branch = one PR. `.githooks/` blocks commits and pushes to `main` (`git config core.hooksPath .githooks`, Claude sets it on session start).
+- **Work directly on `main`**, as the course requires. No feature branches, no PRs.
+- `git pull --rebase origin main` before starting and again before pushing; teammates push to `main` too. Rebase only your own unpushed commits.
 - Conventional commits **without scope**, brief: `feat: encja produktu i dane startowe`.
 - Commit each logical unit as soon as it is done. Plan the commit split before multi-part work.
-- Open PRs with `gh pr create`, body from `.github/pull_request_template.md`. Use `#N` only for real PR or issue references.
-- **Agents never merge PRs** (`gh pr merge` is forbidden). The user reviews and merges.
+- Push (`git push origin main`) only after the local quality gate is green, then watch CI ("Testy i reguły") with `gh run watch`.
 - Before starting a lab, pull template updates with the `sync-template` skill.
 
 ## Quality gate
 
 Run Maven on JDK 21, like CI: `export JAVA_HOME=$(/usr/libexec/java_home -v 21)` on macOS (Claude gets it from `.claude/settings.local.json`). Spotless fails on JDK 27.
 
-Before calling anything done, in the worktree:
+Before calling anything done, in the repo root:
 
 1. `./mvnw -B -ntp spotless:apply` (formats only files changed against `origin/main`).
 2. `./mvnw -B -ntp verify` (compiles, runs team tests and the rules of `<lab>`). Never pipe it before `&&`; check the exit code.
@@ -43,7 +43,7 @@ Before calling anything done, in the worktree:
 
 Details and the diagram: `.agents/README.md`.
 
-- Non-trivial work goes through the `ship` skill: `brief` (or `lab` for a whole lab) → implementer lanes in worktrees (`scripts/worktree-new.sh`) → local gate → optional verifiers → PR → **the user merges**.
+- Non-trivial work goes through the `ship` skill: `brief` (or `lab` for a whole lab) → one implementer at a time on `main` → local gate → optional verifiers → push to `main` → CI.
 - `verifier`, `api-verifier` and `visual-verifier` are optional. The orchestrator proposes one when it is worth it and asks the user before spawning it.
 - Product and business decisions (domain, entities, endpoints, scope of a lab) belong to the team. Ask with numbered options and a recommended default, never guess.
 - Agents report in their fixed formats (DONE / BLOCKED, PASS / FAIL). BLOCKED beats guessing.
@@ -57,6 +57,6 @@ Details and the diagram: `.agents/README.md`.
 ## Runtime and safety
 
 - Shared skills live in `.agents/skills/` (Claude sees them through symlinks in `.claude/skills/`); shared role instructions live in `.agents/roles/`. `.claude/agents/` and `.codex/agents/` are thin adapters.
-- Never force-push (`git push --force`, `-f`, `--force-with-lease`). Never rewrite `main` history.
+- Never force-push (`git push --force`, `-f`, `--force-with-lease`). Never rewrite pushed `main` history.
 - Never commit secrets, the H2 database (`data/`), `target/` or screenshots (`.visual/`).
 - Claude permission rules do not enforce Codex behavior: keep Codex's sandbox and approval policy on.

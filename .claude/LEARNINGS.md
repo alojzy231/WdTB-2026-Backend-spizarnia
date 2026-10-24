@@ -13,10 +13,10 @@ Rules learned from real mistakes. Every agent reads this before working.
 - RTK rewrote `gh pr edit --help` to "ok edited", so `--attach` looked missing → read CLI help through `gh help <command>` or `/usr/bin/grep`, never conclude a flag is missing from rewritten output.
 - `cmd | tail && git commit` committed a failure, because the pipe hid the exit code → never pipe a gate command before `&&`; use `set -o pipefail` or check `$?` separately.
 - zsh expands a leading `=` (`echo =====` → "==== not found") and ties `path` to `PATH` → quote separators (`echo "---"`) and never name a shell variable `path`.
-- `pkill -f spring-boot` also kills other worktrees' apps → stop an app by its port: `/usr/sbin/lsof -ti tcp:<port> | xargs kill`.
+- `pkill -f spring-boot` also kills a teammate's or IntelliJ's app → stop an app by its port: `/usr/sbin/lsof -ti tcp:<port> | xargs kill`.
 - `spotless:apply` failed with `NoSuchFieldError ... JCCompilationUnit` on JDK 27 → run Maven with `JAVA_HOME=$(/usr/libexec/java_home -v 21)`.
-- The git guard hook blocked a Bash heredoc whose line read `... && gh pr merge` → write docs mentioning blocked commands with the Write/Edit tool.
-- There is no global `mvn` → always `./mvnw` from the worktree root.
+- The git guard hook blocked a Bash heredoc whose line started a force-push → write docs mentioning blocked commands with the Write/Edit tool.
+- There is no global `mvn` → always `./mvnw` from the repo root.
 
 ## Project
 

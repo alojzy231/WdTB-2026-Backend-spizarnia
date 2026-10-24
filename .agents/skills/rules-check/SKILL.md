@@ -1,6 +1,6 @@
 ---
 name: rules-check
-description: Run the official project rules for a given lab locally, exactly like CI does (fresh rules from the instructor's template), in an isolated copy, and summarize what fails in plain language. Use before a PR, before a lab-N tag, or when the user asks "czy przejdą reguły", "sprawdź reguły", "rules check".
+description: Run the official project rules for a given lab locally, exactly like CI does (fresh rules from the instructor's template), in an isolated copy, and summarize what fails in plain language. Use before pushing to main, before a lab-N tag, or when the user asks "czy przejdą reguły", "sprawdź reguły", "rules check".
 ---
 
 # Rules check
@@ -10,7 +10,7 @@ CI replaces `src/test/java/pl/wsb/rules/` with the template's latest copy and ru
 ## Inputs
 
 - Lab number N (default: `<lab>` from `pom.xml`).
-- Directory to check (default: the current worktree root).
+- Directory to check (default: the repo root).
 
 ## Steps
 
@@ -24,5 +24,5 @@ CI replaces `src/test/java/pl/wsb/rules/` with the template's latest copy and ru
 
 ## Rules
 
-- Never modify the real worktree. Never "fix" a rule.
+- Never modify the real working tree. Never "fix" a rule.
 - Distinguish a team test failure from a rule failure in the report.

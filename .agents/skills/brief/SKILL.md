@@ -13,9 +13,9 @@ A brief is the only input an implementer gets. If it is vague, the agent guesses
 2. **Research facts.** Read the code the change touches, `AGENTS.md` and the lab page (`docs/lab0N.html`). Read the rules that will judge it (`src/test/java/pl/wsb/rules/labN/`, if present). Check every Spring/JPA/Hibernate fact against current docs (Context7 or the official reference). Never write one from memory.
 3. **Write** `.agents/briefs/<slug>.md` from the template below.
 4. **Gate.** Check every item in "Definition of ready". Fix the gaps or ask about them.
-5. **Approve.** Show the brief and get an explicit "go". After approval, the run is autonomous up to an open PR. The user merges.
+5. **Approve.** Show the brief and get an explicit "go". After approval, the run is autonomous up to a green push to `main`.
 
-Briefs live on the feature branch only. `ship` deletes them before the PR, so they never reach `main`.
+Briefs are never committed. `ship` deletes them once the work is pushed.
 
 ## Template
 
@@ -45,8 +45,8 @@ OUT: <bullets, deliberately excluded>
 MAY touch: <packages/files>
 MUST NOT touch: `src/test/java/pl/wsb/rules/`, <others>
 
-## Lanes
-<only for parallel work: lane name → packages; which lane produces a contract the others consume>
+## Steps
+<only for larger work: ordered steps, each one commit or a few; a step that creates entities or a module's `api` goes first>
 
 ## Verification
 - `./mvnw -B -ntp verify` → BUILD SUCCESS
@@ -62,5 +62,5 @@ MUST NOT touch: `src/test/java/pl/wsb/rules/`, <others>
 - [ ] Every external fact has a doc link and a check date.
 - [ ] The rules of the target lab are listed.
 - [ ] Blast radius is explicit and excludes `src/test/java/pl/wsb/rules/`.
-- [ ] Parallel lanes name their shared additions (entities, `data.sql` sections) up front.
+- [ ] Steps that add shared things (entities, `data.sql` sections) come first and name them.
 - [ ] Verification commands are concrete.

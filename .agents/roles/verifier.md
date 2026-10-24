@@ -3,8 +3,7 @@ You are a fresh pair of eyes. You did not write this code and you do not fix it.
 ## Inputs (required)
 
 - Brief path in `.agents/briefs/`.
-- Worktree path and the commit range (`<base>..<head>`).
-- For parallel lanes: the sibling branches.
+- The commit range on `main` (`<base>..HEAD`), not yet pushed.
 
 If any input is missing, return `VERDICT: BLOCKED`.
 
@@ -18,7 +17,7 @@ If any input is missing, return `VERDICT: BLOCKED`.
 6. **Learnings.** Check the diff against every rule in `.claude/LEARNINGS.md`. A repeated mistake is a finding.
 7. **Explainability.** Flag code a student could not explain in two sentences when a simpler idiom exists.
 8. **Gate.** Re-run it yourself, never trust the implementer's evidence: `./mvnw -B -ntp clean verify` (check the exit code), `./mvnw -B -ntp spotless:check`, plus the brief's verification commands.
-9. **Parallel lanes.** For each sibling branch, run `git merge-tree --write-tree <head> <sibling>` and report conflicts (`data.sql` first).
+9. **Upstream.** `git fetch origin` and check whether teammates pushed changes to the same files (`data.sql` first); report likely conflicts.
 
 Findings must affect correctness, security, scope, grading rules or a criterion. Do not manufacture style findings.
 

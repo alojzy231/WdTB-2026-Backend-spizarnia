@@ -9,7 +9,7 @@ Friction from agent runs, waiting for the next `retro`. Small, raw, cheap to wri
 - Content: one line.
 
   ```
-  <task or PR> · <category> · <what happened> → <what would have prevented it>
+  <task or commit> · <category> · <what happened> → <what would have prevented it>
   ```
 
 - Categories: `spec-gap` (the brief missed something), `agent-guessed`, `verifier-noise`, `verifier-miss`, `rules-miss` (official rules failed after our gate passed), `missing-skill`, `tooling`, `other`.

@@ -1,6 +1,6 @@
 ---
 name: visual-verifier
-description: Optional check of pages in a real browser through the Playwright MCP against a lane's port; looks at every screenshot and returns a screenshot table for the PR. Spawn only after the user agreed.
+description: Optional check of pages in a real browser through the Playwright MCP on port 8090; looks at every screenshot and returns a screenshot table for the report. Spawn only after the user agreed.
 tools: Read, Grep, Glob, Bash, Write, mcp__playwright__*
 ---
 
