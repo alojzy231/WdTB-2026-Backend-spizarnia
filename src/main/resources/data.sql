@@ -14,3 +14,10 @@ insert into user_account (email, display_name, role, created_at) values
     ('s586133@student.wroclaw.merito.pl', 'Damian Kłos',      'USER', current_timestamp),
     ('s737494@student.wroclaw.merito.pl', 'Cezary Goluch',    'USER', current_timestamp),
     ('s451014@student.wroclaw.merito.pl', 'Paulina Kowalska', 'USER', current_timestamp);
+
+-- ===== LAB 02 · pantry_item =====
+insert into pantry_item (name, quantity, unit, location, expiry_date, min_quantity, opened) values
+    ('Mleko 2%',            1.00, 'L',     'FRIDGE',   '2026-10-28', 1.00, true),
+    ('Pierogi ruskie',      0.50, 'KG',    'FREEZER',  '2027-02-15', null, false),
+    ('Makaron penne',       2.00, 'PACK',  'CUPBOARD', '2027-06-30', 1.00, false),
+    ('Jajka',               6.00, 'PIECE', 'FRIDGE',   '2026-11-05', 4.00, false);
