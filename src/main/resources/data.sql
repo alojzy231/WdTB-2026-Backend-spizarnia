@@ -21,3 +21,10 @@ insert into pantry_item (name, quantity, unit, location, expiry_date, min_quanti
     ('Pierogi ruskie',      0.50, 'KG',    'FREEZER',  '2027-02-15', null, false),
     ('Makaron penne',       2.00, 'PACK',  'CUPBOARD', '2027-06-30', 1.00, false),
     ('Jajka',               6.00, 'PIECE', 'FRIDGE',   '2026-11-05', 4.00, false);
+
+-- ===== LAB 02 · shopping_list_item =====
+insert into shopping_list_item (product_name, quantity, unit, estimated_price, purchased, added_at) values
+    ('Mleko 2%',            2.00, 'L',     7.98,  false, '2026-10-22 18:30:00'),
+    ('Jajka',              10.00, 'PIECE', 12.49, false, '2026-10-23 09:15:00'),
+    ('Ryż basmati',         1.00, 'PACK',  6.99,  true,  '2026-10-20 20:00:00'),
+    ('Ser żółty',         300.00, 'G',     null,  false, current_timestamp);
