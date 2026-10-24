@@ -1,7 +1,0 @@
-#!/bin/sh
-# Blocks commits on main: work always happens on a separate branch and lands through a PR.
-# Enable once per clone: git config core.hooksPath .githooks
-if [ "$(git branch --show-current)" = "main" ]; then
-  echo "Committing directly to main is blocked. Create a branch first: git switch -c <name>" >&2
-  exit 1
-fi
