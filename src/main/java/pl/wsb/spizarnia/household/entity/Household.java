@@ -6,9 +6,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /** Gospodarstwo domowe: mieszkanie lub dom, którego spiżarnię śledzą domownicy. */
 @Entity
@@ -31,6 +34,10 @@ public class Household {
 
     @Column(name = "created_at", nullable = false)
     private LocalDate createdAt;
+
+    /** Druga strona relacji HouseholdMember.household: lista nie tworzy kolumny, klucz obcy jest w household_member. */
+    @OneToMany(mappedBy = "household")
+    private List<HouseholdMember> members = new ArrayList<>();
 
     protected Household() {
     }
@@ -60,5 +67,9 @@ public class Household {
 
     public LocalDate getCreatedAt() {
         return createdAt;
+    }
+
+    public List<HouseholdMember> getMembers() {
+        return members;
     }
 }

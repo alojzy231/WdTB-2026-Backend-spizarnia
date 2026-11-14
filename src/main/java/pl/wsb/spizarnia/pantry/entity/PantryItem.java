@@ -4,13 +4,21 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import pl.wsb.spizarnia.household.entity.Household;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 /** Produkt w spiżarni: ile go jest, gdzie leży i do kiedy jest ważny. */
 @Entity
@@ -45,11 +53,23 @@ public class PantryItem {
     @Column(name = "opened")
     private Boolean opened;
 
+    /** Każdy produkt należy do spiżarni jednego gospodarstwa. */
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "household_id", nullable = false)
+    private Household household;
+
+    /** Wiele-do-wielu bez własnych danych: tabelę łączącą pantry_item_tag tworzy Hibernate. */
+    @ManyToMany
+    @JoinTable(name = "pantry_item_tag",
+            joinColumns = @JoinColumn(name = "pantry_item_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private Set<Tag> tags = new HashSet<>();
+
     protected PantryItem() {
     }
 
     public PantryItem(String name, BigDecimal quantity, Unit unit, StorageLocation location,
-                      LocalDate expiryDate, BigDecimal minQuantity, Boolean opened) {
+                      LocalDate expiryDate, BigDecimal minQuantity, Boolean opened, Household household) {
         this.name = name;
         this.quantity = quantity;
         this.unit = unit;
@@ -57,6 +77,7 @@ public class PantryItem {
         this.expiryDate = expiryDate;
         this.minQuantity = minQuantity;
         this.opened = opened;
+        this.household = household;
     }
 
     public Long getId() {
@@ -89,5 +110,13 @@ public class PantryItem {
 
     public Boolean getOpened() {
         return opened;
+    }
+
+    public Household getHousehold() {
+        return household;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
     }
 }

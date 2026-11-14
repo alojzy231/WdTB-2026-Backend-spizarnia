@@ -4,10 +4,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import pl.wsb.spizarnia.household.entity.Household;
+import pl.wsb.spizarnia.pantry.entity.PantryItem;
 import pl.wsb.spizarnia.pantry.entity.Unit;
 
 import java.math.BigDecimal;
@@ -41,14 +46,27 @@ public class ShoppingListItem {
     @Column(name = "added_at", nullable = false)
     private LocalDateTime addedAt;
 
+    /** Każde gospodarstwo ma własną listę zakupów. */
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "household_id", nullable = false)
+    private Household household;
+
+    /** Produkt ze spiżarni, który ta pozycja uzupełnia; pusty, gdy kupujemy coś nowego. */
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pantry_item_id")
+    private PantryItem pantryItem;
+
     protected ShoppingListItem() {
     }
 
-    public ShoppingListItem(String productName, BigDecimal quantity, Unit unit, BigDecimal estimatedPrice) {
+    public ShoppingListItem(String productName, BigDecimal quantity, Unit unit, BigDecimal estimatedPrice,
+                            Household household, PantryItem pantryItem) {
         this.productName = productName;
         this.quantity = quantity;
         this.unit = unit;
         this.estimatedPrice = estimatedPrice;
+        this.household = household;
+        this.pantryItem = pantryItem;
         this.purchased = false;
         this.addedAt = LocalDateTime.now();
     }
@@ -79,5 +97,13 @@ public class ShoppingListItem {
 
     public LocalDateTime getAddedAt() {
         return addedAt;
+    }
+
+    public Household getHousehold() {
+        return household;
+    }
+
+    public PantryItem getPantryItem() {
+        return pantryItem;
     }
 }
